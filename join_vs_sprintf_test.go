@@ -16,7 +16,7 @@ func BenchmarkStringsJoin(b *testing.B) {
 	}
 }
 
-func BenchmarkSprintf(b *testing.B) {
+func BenchmarkSprintfJoin(b *testing.B) {
 
 	b.ReportAllocs()
 
