@@ -5,17 +5,22 @@ go test -v -bench=. -cpu=1,2,4,8
 ```
 
 
-strings.Join vs fmt.Sprintf 
+strings.Join vs fmt.Sprintf vs concat (a + b + c)
 
 ```
-BenchmarkStringsJoin     5000000           233 ns/op          32 B/op          2 allocs/op
-BenchmarkStringsJoin-2  10000000           243 ns/op          32 B/op          2 allocs/op
-BenchmarkStringsJoin-4   5000000           239 ns/op          32 B/op          2 allocs/op
-BenchmarkStringsJoin-8   5000000           241 ns/op          32 B/op          2 allocs/op
-BenchmarkSprintfJoin     2000000           650 ns/op          64 B/op          4 allocs/op
-BenchmarkSprintfJoin-2   2000000           691 ns/op          64 B/op          4 allocs/op
-BenchmarkSprintfJoin-4   2000000           681 ns/op          64 B/op          4 allocs/op
-BenchmarkSprintfJoin-8   2000000           711 ns/op          64 B/op          4 allocs/op
+BenchmarkStringsJoin     5000000           259 ns/op         160 B/op          2 allocs/op
+BenchmarkStringsJoin-2   5000000           275 ns/op         160 B/op          2 allocs/op
+BenchmarkStringsJoin-4   5000000           293 ns/op         160 B/op          2 allocs/op
+BenchmarkStringsJoin-8   5000000           315 ns/op         160 B/op          2 allocs/op
+BenchmarkSprintfJoin     2000000           722 ns/op         128 B/op          4 allocs/op
+BenchmarkSprintfJoin-2   2000000           803 ns/op         128 B/op          4 allocs/op
+BenchmarkSprintfJoin-4   2000000           824 ns/op         128 B/op          4 allocs/op
+BenchmarkSprintfJoin-8   2000000           814 ns/op         128 B/op          4 allocs/op
+BenchmarkConcat         10000000           165 ns/op          80 B/op          1 allocs/op
+BenchmarkConcat-2       10000000           194 ns/op          80 B/op          1 allocs/op
+BenchmarkConcat-4       10000000           178 ns/op          80 B/op          1 allocs/op
+BenchmarkConcat-8       10000000           181 ns/op          80 B/op          1 allocs/op
+
 ```
 
 fmt.Sprint vs fmt.Sprintf
