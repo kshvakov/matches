@@ -2,6 +2,7 @@ package matches
 
 import (
 	"fmt"
+	"strconv"
 	"testing"
 )
 
@@ -25,13 +26,23 @@ func BenchmarkSprintfInt(b *testing.B) {
 	}
 }
 
+func BenchmarkStrconvItoa(b *testing.B) {
+
+	b.ReportAllocs()
+
+	for i := 0; i < b.N; i++ {
+
+		strconv.Itoa(i)
+	}
+}
+
 func BenchmarkSprintFloat(b *testing.B) {
 
 	b.ReportAllocs()
 
 	for i := 0; i < b.N; i++ {
 
-		fmt.Sprint(float32(i) + 0.1)
+		fmt.Sprint(float64(i) + 0.1)
 	}
 }
 
@@ -41,6 +52,16 @@ func BenchmarkSprintfFloat(b *testing.B) {
 
 	for i := 0; i < b.N; i++ {
 
-		fmt.Sprintf("%f", float32(i)+0.1)
+		fmt.Sprintf("%f", float64(i)+0.1)
+	}
+}
+
+func BenchmarkStrconvFormatFloat(b *testing.B) {
+
+	b.ReportAllocs()
+
+	for i := 0; i < b.N; i++ {
+
+		strconv.FormatFloat(float64(i)+0.1, 'f', -1, 64)
 	}
 }
