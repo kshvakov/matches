@@ -51,3 +51,39 @@ BenchmarkStrconvFormatFloat-2    5000000           358 ns/op          48 B/op   
 BenchmarkStrconvFormatFloat-4    5000000           358 ns/op          48 B/op          2 allocs/op
 BenchmarkStrconvFormatFloat-8    5000000           353 ns/op          48 B/op          2 allocs/op
 ```
+
+encoding/json vs msgpack (gopkg.in/vmihailenco/msgpack.v2)
+```
+BenchmarkJsonMarshal          100000         14960 ns/op        3320 B/op          6 allocs/op
+BenchmarkJsonMarshal-2        100000         18019 ns/op        3320 B/op          6 allocs/op
+BenchmarkJsonMarshal-4        100000         17018 ns/op        3320 B/op          6 allocs/op
+BenchmarkJsonMarshal-8        100000         16620 ns/op        3320 B/op          6 allocs/op
+BenchmarkMsgpackMarshal       100000         21801 ns/op        1976 B/op          6 allocs/op
+BenchmarkMsgpackMarshal-2      50000         23432 ns/op        1976 B/op          6 allocs/op
+BenchmarkMsgpackMarshal-4     100000         25206 ns/op        1974 B/op          6 allocs/op
+BenchmarkMsgpackMarshal-8     100000         23056 ns/op        1977 B/op          6 allocs/op
+BenchmarkJsonUnmarshal         20000         65490 ns/op        4064 B/op        125 allocs/op
+BenchmarkJsonUnmarshal-2       20000         69086 ns/op        4064 B/op        125 allocs/op
+BenchmarkJsonUnmarshal-4       20000         67042 ns/op        4064 B/op        125 allocs/op
+BenchmarkJsonUnmarshal-8       20000         68248 ns/op        4064 B/op        125 allocs/op
+BenchmarkMsgpackUnmarshal      50000         32672 ns/op        2864 B/op         92 allocs/op
+BenchmarkMsgpackUnmarshal-2    50000         34582 ns/op        2864 B/op         92 allocs/op
+BenchmarkMsgpackUnmarshal-4    50000         33320 ns/op        2864 B/op         92 allocs/op
+BenchmarkMsgpackUnmarshal-8    50000         33992 ns/op        2864 B/op         92 allocs/op
+BenchmarkJsonEncoder          100000         12930 ns/op           8 B/op          1 allocs/op
+BenchmarkJsonEncoder-2        100000         13175 ns/op           8 B/op          1 allocs/op
+BenchmarkJsonEncoder-4        100000         12718 ns/op           8 B/op          1 allocs/op
+BenchmarkJsonEncoder-8        100000         13159 ns/op           8 B/op          1 allocs/op
+BenchmarkMsgpackEncoder       100000         20086 ns/op          64 B/op          2 allocs/op
+BenchmarkMsgpackEncoder-2     100000         19512 ns/op          64 B/op          2 allocs/op
+BenchmarkMsgpackEncoder-4     100000         19301 ns/op          64 B/op          2 allocs/op
+BenchmarkMsgpackEncoder-8     100000         19267 ns/op          64 B/op          2 allocs/op
+BenchmarkJsonDecoder           20000         72461 ns/op       10656 B/op        133 allocs/op
+BenchmarkJsonDecoder-2         20000         80061 ns/op       10656 B/op        133 allocs/op
+BenchmarkJsonDecoder-4         20000         74548 ns/op       10656 B/op        133 allocs/op
+BenchmarkJsonDecoder-8         20000         75940 ns/op       10656 B/op        133 allocs/op
+BenchmarkMsgpackDecoder        50000         37140 ns/op        7120 B/op         94 allocs/op
+BenchmarkMsgpackDecoder-2      30000         41695 ns/op        7120 B/op         94 allocs/op
+BenchmarkMsgpackDecoder-4      50000         36839 ns/op        7120 B/op         94 allocs/op
+BenchmarkMsgpackDecoder-8      50000         37547 ns/op        7120 B/op         94 allocs/op
+```
