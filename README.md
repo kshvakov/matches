@@ -52,7 +52,7 @@ BenchmarkStrconvFormatFloat-4    5000000           358 ns/op          48 B/op   
 BenchmarkStrconvFormatFloat-8    5000000           353 ns/op          48 B/op          2 allocs/op
 ```
 
-encoding/json vs msgpack (gopkg.in/vmihailenco/msgpack.v2)
+gob vs encoding/json vs msgpack (gopkg.in/vmihailenco/msgpack.v2)
 ```
 BenchmarkJsonMarshal          100000         14960 ns/op        3320 B/op          6 allocs/op
 BenchmarkJsonMarshal-2        100000         18019 ns/op        3320 B/op          6 allocs/op
@@ -70,20 +70,29 @@ BenchmarkMsgpackUnmarshal      50000         32672 ns/op        2864 B/op       
 BenchmarkMsgpackUnmarshal-2    50000         34582 ns/op        2864 B/op         92 allocs/op
 BenchmarkMsgpackUnmarshal-4    50000         33320 ns/op        2864 B/op         92 allocs/op
 BenchmarkMsgpackUnmarshal-8    50000         33992 ns/op        2864 B/op         92 allocs/op
-BenchmarkJsonEncoder          100000         12930 ns/op           8 B/op          1 allocs/op
-BenchmarkJsonEncoder-2        100000         13175 ns/op           8 B/op          1 allocs/op
-BenchmarkJsonEncoder-4        100000         12718 ns/op           8 B/op          1 allocs/op
-BenchmarkJsonEncoder-8        100000         13159 ns/op           8 B/op          1 allocs/op
-BenchmarkMsgpackEncoder       100000         20086 ns/op          64 B/op          2 allocs/op
-BenchmarkMsgpackEncoder-2     100000         19512 ns/op          64 B/op          2 allocs/op
-BenchmarkMsgpackEncoder-4     100000         19301 ns/op          64 B/op          2 allocs/op
-BenchmarkMsgpackEncoder-8     100000         19267 ns/op          64 B/op          2 allocs/op
-BenchmarkJsonDecoder           20000         72461 ns/op       10656 B/op        133 allocs/op
-BenchmarkJsonDecoder-2         20000         80061 ns/op       10656 B/op        133 allocs/op
-BenchmarkJsonDecoder-4         20000         74548 ns/op       10656 B/op        133 allocs/op
-BenchmarkJsonDecoder-8         20000         75940 ns/op       10656 B/op        133 allocs/op
-BenchmarkMsgpackDecoder        50000         37140 ns/op        7120 B/op         94 allocs/op
-BenchmarkMsgpackDecoder-2      30000         41695 ns/op        7120 B/op         94 allocs/op
-BenchmarkMsgpackDecoder-4      50000         36839 ns/op        7120 B/op         94 allocs/op
-BenchmarkMsgpackDecoder-8      50000         37547 ns/op        7120 B/op         94 allocs/op
+BenchmarkJsonEncoder          100000         13005 ns/op           8 B/op          1 allocs/op
+BenchmarkJsonEncoder-2        100000         13014 ns/op           8 B/op          1 allocs/op
+BenchmarkJsonEncoder-4        100000         12970 ns/op           8 B/op          1 allocs/op
+BenchmarkJsonEncoder-8        100000         13130 ns/op           8 B/op          1 allocs/op
+BenchmarkMsgpackEncoder       100000         18594 ns/op          64 B/op          2 allocs/op
+BenchmarkMsgpackEncoder-2     100000         18669 ns/op          64 B/op          2 allocs/op
+BenchmarkMsgpackEncoder-4     100000         18567 ns/op          64 B/op          2 allocs/op
+BenchmarkMsgpackEncoder-8     100000         18540 ns/op          64 B/op          2 allocs/op
+BenchmarkGobEncoder            50000         32983 ns/op        3744 B/op         54 allocs/op
+BenchmarkGobEncoder-2          50000         36056 ns/op        3744 B/op         54 allocs/op
+BenchmarkGobEncoder-4          50000         34600 ns/op        3744 B/op         54 allocs/op
+BenchmarkGobEncoder-8          50000         37498 ns/op        3744 B/op         54 allocs/op
+BenchmarkJsonDecoder           20000         69009 ns/op       10544 B/op        132 allocs/op
+BenchmarkJsonDecoder-2         20000         74594 ns/op       10544 B/op        132 allocs/op
+BenchmarkJsonDecoder-4         20000         73486 ns/op       10544 B/op        132 allocs/op
+BenchmarkJsonDecoder-8         20000         76870 ns/op       10544 B/op        132 allocs/op
+BenchmarkMsgpackDecoder        50000         32469 ns/op        7008 B/op         93 allocs/op
+BenchmarkMsgpackDecoder-2      50000         37274 ns/op        7008 B/op         93 allocs/op
+BenchmarkMsgpackDecoder-4      50000         37466 ns/op        7008 B/op         93 allocs/op
+BenchmarkMsgpackDecoder-8      50000         35623 ns/op        7008 B/op         93 allocs/op
+BenchmarkGobDecoder            10000        160588 ns/op       19740 B/op        420 allocs/op
+BenchmarkGobDecoder-2          10000        118192 ns/op       19740 B/op        420 allocs/op
+BenchmarkGobDecoder-4          10000        114654 ns/op       19741 B/op        420 allocs/op
+BenchmarkGobDecoder-8          10000        113526 ns/op       19741 B/op        420 allocs/op
+
 ```

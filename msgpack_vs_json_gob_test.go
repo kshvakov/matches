@@ -3,6 +3,7 @@ package matches
 import (
 	"bufio"
 	"bytes"
+	"encoding/gob"
 	"encoding/json"
 	"gopkg.in/vmihailenco/msgpack.v2"
 	"math"
@@ -179,6 +180,25 @@ func BenchmarkMsgpackEncoder(b *testing.B) {
 	}
 }
 
+func BenchmarkGobEncoder(b *testing.B) {
+
+	b.ReportAllocs()
+
+	buff := &bytes.Buffer{}
+
+	for i := 0; i < b.N; i++ {
+
+		err := gob.NewEncoder(buff).Encode(&TestStruct)
+
+		if err != nil {
+
+			b.Error(err)
+		}
+
+		buff.Reset()
+	}
+}
+
 func BenchmarkJsonDecoder(b *testing.B) {
 
 	b.ReportAllocs()
@@ -190,14 +210,13 @@ func BenchmarkJsonDecoder(b *testing.B) {
 		b.Error(err)
 	}
 
+	buff := bytes.NewBuffer(data)
+
 	b.ResetTimer()
 
 	for i := 0; i < b.N; i++ {
 
-		var (
-			result = CommonStruct{}
-			buff   = bytes.NewBuffer(data)
-		)
+		result := CommonStruct{}
 
 		err := json.NewDecoder(bufio.NewReader(buff)).Decode(&result)
 
@@ -205,6 +224,8 @@ func BenchmarkJsonDecoder(b *testing.B) {
 
 			b.Error(err)
 		}
+
+		buff.Write(data)
 	}
 }
 
@@ -219,14 +240,13 @@ func BenchmarkMsgpackDecoder(b *testing.B) {
 		b.Error(err)
 	}
 
+	buff := bytes.NewBuffer(data)
+
 	b.ResetTimer()
 
 	for i := 0; i < b.N; i++ {
 
-		var (
-			result = CommonStruct{}
-			buff   = bytes.NewBuffer(data)
-		)
+		result := CommonStruct{}
 
 		err := msgpack.NewDecoder(bufio.NewReader(buff)).Decode(&result)
 
@@ -234,5 +254,40 @@ func BenchmarkMsgpackDecoder(b *testing.B) {
 
 			b.Error(err)
 		}
+
+		buff.Write(data)
+	}
+}
+
+func BenchmarkGobDecoder(b *testing.B) {
+
+	b.ReportAllocs()
+
+	dataBuff := &bytes.Buffer{}
+
+	err := gob.NewEncoder(dataBuff).Encode(&TestStruct)
+
+	if err != nil {
+
+		b.Error(err)
+	}
+
+	data := dataBuff.Bytes()
+	buff := bytes.NewBuffer(data)
+
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+
+		result := CommonStruct{}
+
+		err := gob.NewDecoder(bufio.NewReader(buff)).Decode(&result)
+
+		if err != nil {
+
+			b.Error(err)
+		}
+
+		buff.Write(data)
 	}
 }
